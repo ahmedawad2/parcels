@@ -1,0 +1,699 @@
+/*  * === MEDIA QUERIES ===  */
+
+@media only screen and (max-device-width: 768px) {
+	h1{
+		font-size: 20px;
+	}
+	p{
+		font-size: 14px !important;
+		padding: 10px;
+		color: #737373;
+	}
+	.amount{
+		font-size: 40px !important;
+	}
+	.midnightInner{
+    	margin-right: 22px;
+	}
+	.parallax-window{
+	    min-height: 214px !important;
+        /*margin-bottom: 11%;*/
+	}
+}
+
+@media only screen and (max-width: 500px){
+	.btnSupport{
+		margin-top: 5%;
+	}
+	.btnSupportTwo{
+		margin-top: 5%;
+	}
+	.punchLine {
+    	font-size: 22px;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+    .positionR{
+    	position: relative;
+	    display: inline-block;
+        margin: -3px;
+	}
+	.featuredImage{
+		float: left !important;
+		text-align: center;
+		width: 100%;
+	}
+	.lineHight, .eTitle{
+		text-align: center;
+	}
+	#container { display:flex; flex-direction: column; text-align:center;}
+	#TextFirst { order: 1 }
+	#imageSecond { order: 2 }
+
+	.themeforestIcon{
+		display: none;
+	}
+
+	.defaultDextop{
+		width: 100% !important;
+	}
+}
+a {
+  text-decoration: none !important;
+}
+p{
+	font-size: 16px;
+	line-height: 1.6;
+	color: #838ea5;
+	font-weight: 500;
+}
+.lineHight{
+	line-height: 1.8;
+}
+
+html, body{
+	font-family: 'Poppins', sans-serif;;
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+}
+
+
+.row{
+	margin-left: -8px !important;
+	margin-right: -8px !important;
+}
+
+.text-white{
+	color: #fff;
+}
+.parallax-window {
+    min-height: 480px;
+    max-width: 100%;
+    background: transparent;
+}
+
+/*  * === HEADER PART CSS ===  */
+
+.white{
+	color: rgba(74, 74, 74, 0.71);
+}
+.white2{
+	color: rgba(255, 255, 255, 0.75);
+}
+.robustSemi{
+	color: #f6bb42;
+	transition: all 1s;
+}
+.robustSemi:hover{
+	color: #967adc;
+	transition: all 1s;
+}
+.rpedTop{
+}
+.header{
+	font-weight: 600;
+}
+.headBg{
+	/*background-image: url(../image/banner.png);*/
+	/*background-color: #000;*/
+	color: #000;
+	font-weight: lighter;
+	height: 100vh;
+}
+.punchLine{
+	font-weight: lighter;
+}
+.brandLogo{
+	width: 140px;
+	margin-top: 5%;
+}
+.brandName{
+	font-family: 'Montserrat';
+	padding-bottom:4.5%;
+	padding-top:10%;
+	font-size: 50px;
+}
+.btnPurchase{
+	/*border-radius: 50px;*/
+	border: none;
+	width: 230px;
+	overflow: hidden;
+	transition: all 0.5s;
+	color: #fff;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f25e76+0,ff8777+50,edb46f+100 */
+	background: #f25e76; /* Old browsers */
+	background: -moz-linear-gradient(-45deg, #f25e76 0%, #ff8777 50%, #edb46f 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg, #f25e76 0%,#ff8777 50%,#edb46f 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg, #f25e76 0%,#ff8777 50%,#edb46f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f25e76', endColorstr='#edb46f',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.btnPurchase:hover{
+	background-color: #EFA50B;
+	transition: all 0.5s;
+	color: #fff;
+}
+.btnPurchase .glyphicon{
+	padding-left: 50px;
+	transition: all 0.5s;
+}
+.btnPurchase:hover .glyphicon{
+	padding-left: 0px;
+	transition: all 0.5s;
+}
+
+.btnPurchase:hover .buttonText{
+	padding-left: 10px;
+	transition: all 0.5s;
+}
+
+.buttonText{
+	padding-left: 35px;
+	transition: all 0.5s;
+	font-weight: 900;
+}
+.bg-offwhite{
+    background-color: #ecf4f9;
+}
+
+.btnSupport{
+	/*border-radius: 50px;*/
+	border: none;
+	width: 165px;
+	overflow: hidden;
+	transition: all 0.5s;
+	color: #fff;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#01f0db+0,01cbd7+50,00a7d4+100 */
+	background: #01f0db; /* Old browsers */
+	background: -moz-linear-gradient(-45deg, #01f0db 0%, #01cbd7 50%, #00a7d4 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg, #01f0db 0%,#01cbd7 50%,#00a7d4 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg, #01f0db 0%,#01cbd7 50%,#00a7d4 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#01f0db', endColorstr='#00a7d4',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.btnSupport:hover{
+	background-color: #35b696;
+	transition: all 0.5s;
+	color: #fff;
+}
+.btnSupport .glyphicon{
+	padding-left: 40px;
+	transition: all 0.5s;
+}
+.btnSupport:hover .glyphicon{
+	padding-left: 0px;
+	transition: all 0.5s;
+}
+.btnSupport:hover .buttonText{
+	padding-left: 15px;
+	transition: all 0.5s;
+}
+
+
+.btnSupportTwo{
+	/*border-radius: 50px;*/
+	border: none;
+	width: 165px;
+	overflow: hidden;
+	background-color: #48CFAD;
+	transition: all 0.5s;
+	color: #fff;
+}
+.btnSupportTwo:hover{
+	background-color: #35b696;
+	transition: all 0.5s;
+	color: #fff;
+}
+.btnSupportTwo .glyphicon{
+	padding-left: 40px;
+	transition: all 0.5s;
+}
+.btnSupportTwo:hover .glyphicon{
+	padding-left: 0px;
+	transition: all 0.5s;
+}
+.btnSupportTwo:hover .buttonText{
+	padding-left: 10px;
+	transition: all 0.5s;
+}
+
+
+/*  * === BODY PART CSS ===  */
+
+
+/* UNLIMITED LAYOUTS */
+
+.ulLayout{
+	padding: 6%;
+	padding-top: 10%;
+}
+.responsiveMockup{
+	width: 100%;
+	padding-top: 12%;
+}
+.pedforMockup{
+	padding: 0px;
+}
+
+/* CHOOSE YOUR EXCLUSIVE VERSION */
+
+.chooseDemo{
+	/*background-color: #f8f8f8;
+    border-top: 1px solid #e6e6e6;*/
+	padding-top:5%;
+	padding-bottom:5%;
+}
+.demoImage{
+	width: 100%;
+    /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);*/
+    margin: 0px 0px 20px 0px;
+    border: 3px solid #eaeaea
+}
+
+.categoryIcon{
+	padding-top: 10%;
+	padding-bottom: 10%;
+}
+.category{
+	padding: 6%;
+	padding-top: 4%;
+}
+.wayPed{
+	background-color: #f5f5f5;
+	padding-top: 4%;
+	padding-bottom: 4%;
+}
+.bg-white{
+	background-color: #fff;
+}
+
+/* Featured */
+
+.elements{
+	background: linear-gradient(135deg, #2dcde3 0%,#42D1C7 52%,#00a7d4 100%);
+	color: #fff;
+    padding: 0px;
+    /*position: absolute;*/
+}
+.featuredImage{
+	max-width: 100%;
+	/*-webkit-box-shadow: 6px 6px 52px 0px rgba(0,0,0,0.25);
+	-moz-box-shadow: 6px 6px 52px 0px rgba(0,0,0,0.25);
+	box-shadow: 6px 6px 52px 0px rgba(0,0,0,0.25);*/
+}
+.fePedd{
+	padding: 2%;
+}
+
+/*  * === Footer ===  */
+
+.price{
+	padding-top:5%;
+	padding-bottom: 8%;
+	background: linear-gradient(135deg, #1bcedf 0%, #4b247a 100%);
+	color: #fff;
+	z-index: -1;
+}
+.amount{
+	font-size: 70px;
+	font-weight: 600;
+}
+.themeforestIcon{
+    width: 75px;
+    margin-top: -29px;
+}
+.btnPurchaseb{
+	background-color: #e85763;
+	/*border-radius: 50px;*/
+	color: #fff;
+	border: none;
+	width: 230px;
+	overflow: hidden;
+	transition: all 0.5s;
+}
+.btnPurchaseb:hover{
+	background-color: #d4424e;
+	/*border-radius: 50px;*/
+	color: #fff;
+	transition: all 0.5s;
+}
+.copyRight{
+	padding: 2%;
+	padding-top: 3%;
+	background-color: #1e2b37;
+	color: #fff;
+    /*margin-bottom: 67px;*/
+}
+.fooLogo{
+	width: 100px;
+}
+.feedback{
+	background-color: #37bc9b;
+	padding:2%;
+}
+.crText{
+	font-size: 14px;
+	font-weight: lighter;
+	color: #c9cfd4;
+}
+.btnPurchaseb .glyphicon{
+	padding-left: 50px;
+	transition: all 0.5s;
+}
+.btnPurchaseb:hover .glyphicon{
+	padding-left: 0px;
+	transition: all 0.5s;
+}
+.btnPurchaseb:hover .buttonText{
+	padding-left: 0px;
+	transition: all 0.5s;
+}
+.hoverE:hover{
+	background-color: #e36878;
+	color: #fff;
+	border-color: #e36878;
+}
+.hoverE:visited{
+	background-color: #fe7587;
+	color:#FFF;
+	border-color: #e36878;
+}
+.ped_bottom{
+	padding-bottom: 2%;
+}
+.extraFeatures{
+	background-color: #f8fbfd;
+}
+
+.midnightHeader.default ul a{
+ 	background: none;
+ 	color: #000 !important;
+}
+
+.midnightHeader.info ul a{
+ 	background: none;
+ 	color: #000 !important;
+}
+
+.midnightHeader.yellow ul a{
+ 	background: none;
+ 	color: #fff !important;
+}
+
+
+
+.midnightHeader.yellow .stretchy-nav-bg{
+ 	background: linear-gradient(135deg, #f68348 0%,#f6b70e 100%);
+ 	color: #000 !important;
+}
+
+.midnightHeader.info .stretchy-nav-bg{
+	background: linear-gradient(135deg, #01f0db 0%,#01cbd7 50%,#00a7d4 100%);
+	color: #fff !important;
+}
+.midnightHeader.danger .stretchy-nav-bg{
+    background: linear-gradient(135deg, #f25e76 0%,#ff8777 50%,#edb46f 100%);
+	color: #000 !important;
+}
+.midnightHeader.blue .stretchy-nav-bg{
+    background: linear-gradient(135deg, #6acbf2 0%,#5075e0 100%);
+	color: #000 !important;
+}
+.text-align-center{
+	text-align: center;
+}
+.dashboard{
+	background: rgba(149,121,219,1);
+	background: -moz-linear-gradient(top, rgba(149,121,219,1) 0%, rgba(102,64,199,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(149,121,219,1)), color-stop(100%, rgba(102,64,199,1)));
+	background: -webkit-linear-gradient(top, rgba(149,121,219,1) 0%, rgba(102,64,199,1) 100%);
+	background: -o-linear-gradient(top, rgba(149,121,219,1) 0%, rgba(102,64,199,1) 100%);
+	background: -ms-linear-gradient(top, rgba(149,121,219,1) 0%, rgba(102,64,199,1) 100%);
+	background: linear-gradient(to bottom, rgba(149,121,219,1) 0%, rgba(102,64,199,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9579db', endColorstr='#6640c7', GradientType=0 );
+	color: #fff;
+}
+.fooBot{
+	color: #967adc;
+	font-size: 16px;
+}
+/*.eTitle{
+	text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.45);
+}*/
+
+.text-center
+{
+	text-align: center;
+	line-height: 1.1;
+	padding: 2%;
+}
+.text-align-center
+{
+	text-align: center;
+}
+.text-right
+{
+	text-align: right;
+}
+.text-left
+{
+	text-align: left;
+}
+.mt-0{
+	margin-top: 0px;
+}
+.mt-2{
+	margin-top:2%;
+}
+.pt-1{
+	padding-top: 1%;
+}
+.pt-2{
+	padding-top: 2%;
+}
+.pt-3{
+	padding-top: 3%;
+}
+.pt-5{
+	padding-top: 5% !important;
+}
+.pt-10{
+	padding-top: 10% !important;
+}
+.pt-8{
+	padding-top: 8% !important;
+}
+.pb-5{
+	padding-bottom: 5% !important;
+}
+.pa-2{
+	padding: 2%;
+}
+.pa-1{
+	padding: 1%;
+}
+.pa-5{
+	padding: 5%;
+}
+.pb-2{
+	padding-bottom: 2%;
+}
+.pl-3{
+	padding-left: 3%;
+}
+.pl-5{
+	padding-left: 5%;
+}
+.float-right{
+	float: right;
+}
+.pl-10{
+	padding-left: 10%;
+}
+.pr-5{
+	padding-right: 5%;
+}
+.pr-10{
+	padding-right: 10%;
+}
+.float-left{
+	float: left;
+}
+
+.font-uppercase{
+	text-transform: uppercase;
+}
+.fixed-foot{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e52733+0,b50104+100 */
+	background: #e52733; /* Old browsers */
+	background: -moz-linear-gradient(-45deg, #e52733 0%, #b50104 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg, #e52733 0%,#b50104 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg, #e52733 0%,#b50104 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e52733', endColorstr='#b50104',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+	color: #ffcf54;
+	padding: 8px;
+}
+.foot-text{
+	font-size: 20px;
+	text-transform: uppercase;
+	font-weight: lighter;
+}
+
+.main-prise{
+	font-size: 30px;
+	color: #fff;
+}
+
+.buyers-text{
+	color: #fff;
+}
+
+.btnPurchase-2{
+	/*border-radius: 50px;*/
+	border: none;
+	width: 250px;
+	overflow: hidden;
+	background-color: #fff;
+	transition: all 0.5s;
+	color: #000;
+	padding: 2px 12px;
+	margin-bottom:3px;
+}
+.btnPurchase-2:hover{
+	background-color: #EFA50B;
+	transition: all 0.5s;
+	color: #000;
+}
+.btnPurchase-2 .glyphicon{
+	padding-left: 50px;
+	transition: all 0.5s;
+}
+.btnPurchase-2:hover .glyphicon{
+	padding-left: 0px;
+	transition: all 0.5s;
+}
+
+.btnPurchase-2:hover .buttonText-2{
+	padding-left: 15px;
+	transition: all 0.5s;
+}
+.buttonText-2{
+	padding-left: 26px;
+    transition: all 0.5s;
+}
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+
+/* The ribbons */
+
+.through{
+	text-decoration: line-through;
+}
+
+.ribbon-price{
+	font-size: 25px;
+}
+
+.corner-ribbon{
+  width: 260px;
+  background: #e43;
+  position: absolute;
+  top: 35px !important;
+  left: -60px !important;
+  text-align: center;
+  line-height: 45px;
+  letter-spacing: 1px;
+  color: #fff;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+/* Custom styles */
+
+.corner-ribbon.sticky{
+  position: fixed;
+}
+
+.corner-ribbon.shadow{
+  /*box-shadow: 0 0 3px rgba(0,0,0,.3);*/
+}
+
+/* Different positions */
+
+.corner-ribbon.top-left{
+  top: 25px;
+  left: -50px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+
+/* Colors */
+
+.corner-ribbon.red{
+	* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff588f+0,ce1e5c+100 */
+	background: #ff588f; /* Old browsers */
+	background: -moz-linear-gradient(-45deg, #ff588f 0%, #ce1e5c 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg, #ff588f 0%,#ce1e5c 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg, #ff588f 0%,#ce1e5c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff588f', endColorstr='#ce1e5c',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+	z-index: 999;
+}
+
+
+
+.featuredImage{
+    -webkit-animation: mover 1.6s infinite  alternate;
+    animation: mover 2s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+
+
+.blur {
+  background-size: cover;
+  overflow: hidden;
+  filter: blur(13px);
+  position: absolute;
+  height: 300px;
+  top: -50px;
+  left: -50px;
+  right: -50px;
+  bottom: -50px;
+}
+
+.widget {
+  border-top: 2px solid rgba(255, 255, 255, .5);
+  border-bottom: 2px solid rgba(255, 255, 255, .5);
+  height: 200px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.center {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
