@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ParcelsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,11 @@ Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'loginAttempt'])->name('loginAttempt');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+
+
+Route::group([
+    'middleware' => 'auth'
+], function () {
+    Route::resource('parcels', ParcelsController::class);
+    Route::post('parcels/DTHandler', [ParcelsController::class, 'DTHandler'])->name('parcels.DTHandler');
+});

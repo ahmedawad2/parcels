@@ -10,4 +10,11 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public static string $layoutTitle = '';
+
+    public function __construct()
+    {
+        view()->share('layoutTitle', static::$layoutTitle);
+    }
 }

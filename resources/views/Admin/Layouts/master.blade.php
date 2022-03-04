@@ -188,5 +188,10 @@
 
 <!-- END PAGE LEVEL JS-->
 @yield('scripts')
+<script>
+    $(function () {
+        $('a[href="{{URL::current()}}"]').parent().addClass('active');
+    })
+</script>
 </body>
 </html>
