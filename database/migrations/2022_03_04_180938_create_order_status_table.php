@@ -2,23 +2,25 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParcelsTable extends Migration
+class CreateOrderStatusTable extends Migration
 {
-    private string $table = 'parcels';
+    private string $table = 'order_status';
 
     public function up()
     {
         Schema::create($this->table, function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('sender_id');
-            $table->foreign('sender_id')->references('id')->on('users')
+            $table->unsignedBigInteger('order_id');
+            $table->foreign('order_id')->references('id')->on('orders')
                 ->onDelete('cascade');
 
-            $table->string('pick');
-            $table->string('deliver');
+            $table->unsignedTinyInteger('status');
+
+            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
