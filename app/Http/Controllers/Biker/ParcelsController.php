@@ -1,22 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Sender;
-
+namespace App\Http\Controllers\Biker;
 
 use App\Abstraction\Classes\BusinessLogic\OrderStatuses;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Parcels\ParcelCreateRequest;
 use App\Models\Parcel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ParcelsController extends Controller
 {
-    public static string $layoutTitle = 'Parcels';
-
     public function index()
     {
-        return view('Admin.Senders.Parcels.index');
+        return view('Admin.Bikers.Parcels.index');
     }
 
     public function DTHandler(Request $request)
@@ -42,10 +38,10 @@ class ParcelsController extends Controller
         if (isset($request->get('search')['value'])) {
             $search = trim($request->get('search')['value']);
         }
-        $recordsFiltered = Parcel::where('sender_id', Auth::id())->count();
+        $recordsFiltered = Parcel::forBikers()->count();
         $recordsTotal = $recordsFiltered;
         if ($search) {
-            $parcels = Parcel::where('sender_id', Auth::id())
+            $parcels = Parcel::forBikers()
                 ->where(function ($q) use ($search) {
                     $q->where('pick', 'like', '%' . $search . '%')
                         ->orWhere('deliver', 'like', '%' . $search . '%');
@@ -53,11 +49,10 @@ class ParcelsController extends Controller
                 ->orderBy($col, $dir)
                 ->skip($start)
                 ->limit($length)
-                ->with('currentOrder.currentStatus')
                 ->select($columns)
                 ->get();
 
-            $recordsFiltered = Parcel::where('sender_id', Auth::id())
+            $recordsFiltered = Parcel::forBikers()
                 ->where(function ($q) use ($search) {
                     $q->where('pick', 'like', '%' . $search . '%')
                         ->orWhere('deliver', 'like', '%' . $search . '%');
@@ -65,11 +60,10 @@ class ParcelsController extends Controller
                 ->count();
 
         } else {
-            $parcels = Parcel::where('sender_id', Auth::id())
+            $parcels = Parcel::forBikers()
                 ->orderBy($col, $dir)
                 ->skip($start)
                 ->limit($length)
-                ->with('currentOrder.currentStatus')
                 ->select($columns)
                 ->get();
         }
@@ -82,40 +76,5 @@ class ParcelsController extends Controller
                 $parcel->status = OrderStatuses::getParcelCurrentStatus($parcel);
             })
         ]);
-    }
-
-    public function create()
-    {
-        return view('Admin.Senders.Parcels.create');
-    }
-
-    public function store(ParcelCreateRequest $request)
-    {
-        Parcel::create([
-            'sender_id' => Auth::id(),
-            'pick' => $request->get('pick'),
-            'deliver' => $request->get('deliver'),
-        ]);
-        return redirect()->route('sender.parcels.index');
-    }
-
-    public function show($id)
-    {
-
-    }
-
-    public function destroy($id)
-    {
-
-    }
-
-    public function edit($id)
-    {
-
-    }
-
-    public function update($id)
-    {
-
     }
 }

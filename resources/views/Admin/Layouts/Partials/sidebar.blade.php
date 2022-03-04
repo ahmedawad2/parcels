@@ -19,6 +19,11 @@
                     <a href="{{route('sender.parcels.create')}}"
                        class="menu-item">Create</a>
                 </li>
+            @elseif(\Illuminate\Support\Facades\Auth::user()->type === 2)
+                <li class="">
+                    <a href="{{route('biker.parcels.index')}}"
+                       class="menu-item">Index</a>
+                </li>
             @endif
         </ul>
     </li>

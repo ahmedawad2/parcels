@@ -33,6 +33,13 @@ Route::group([
     Route::post('parcels/DTHandler', [ParcelsController::class, 'DTHandler'])->name('sender.parcels.DTHandler');
 });
 
-Route::name('sender.')->group(function (){
 
+Route::group([
+    'middleware' => 'auth',
+    'prefix' => 'biker',
+
+], function () {
+    Route::name('biker')->resource('parcels', \App\Http\Controllers\Biker\ParcelsController::class);
+    Route::post('parcels/DTHandler', [\App\Http\Controllers\Biker\ParcelsController::class, 'DTHandler'])->name('biker.parcels.DTHandler');
 });
+

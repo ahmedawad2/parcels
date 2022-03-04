@@ -10,7 +10,7 @@
                 <li class="breadcrumb-item"><a
                         href="{{route('dashboard')}}">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item"><a href="{{route('sender.parcels.index')}}">{{ $layoutTitle }}</a>
+                <li class="breadcrumb-item"><a href="{{route('parcels.index')}}">{{ $layoutTitle }}</a>
                 </li>
                 <li class="breadcrumb-item active">Create</li>
             </ol>
@@ -40,7 +40,7 @@
 
 
                             <form class="form" method="post"
-                                  action="{{route('sender.parcels.store')}}">
+                                  action="{{route('parcels.store')}}">
                                 {{csrf_field()}}
                                 <div class="form-body">
                                     <h4 class="form-section">{{ Str::singular($layoutTitle) }}</h4>
@@ -67,7 +67,7 @@
                                     </div>
 
                                     <div class="form-actions right">
-                                        <a href="{{route('sender.parcels.index')}}"
+                                        <a href="{{route('parcels.index')}}"
                                            class="btn btn-warning mr-1">
                                             <i class="ft-x"></i> Cancel
                                         </a>
