@@ -53,6 +53,7 @@ class ParcelsController extends Controller
                 ->skip($start)
                 ->limit($length)
                 ->select($columns)
+                ->with('currentOrder.currentStatus')
                 ->get();
 
             $recordsFiltered = Parcel::where('pick', 'like', '%' . $search . '%')
@@ -64,6 +65,7 @@ class ParcelsController extends Controller
                 ->skip($start)
                 ->limit($length)
                 ->select($columns)
+                ->with('currentOrder.currentStatus')
                 ->get();
         }
 

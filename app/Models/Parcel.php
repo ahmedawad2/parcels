@@ -6,6 +6,18 @@ namespace App\Models;
 class Parcel extends CustomModel
 {
     protected $table = 'parcels';
-    public $timestamps = false;
+
     protected $guarded = ['id'];
+
+    public $timestamps = false;
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function currentOrder()
+    {
+        return $this->hasOne(Order::class)->latest();
+    }
 }

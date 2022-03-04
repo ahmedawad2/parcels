@@ -44,6 +44,7 @@
                                     <th>id</th>
                                     <th>Pick From</th>
                                     <th>Deliver To</th>
+                                    <th>Current Status</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -101,6 +102,15 @@
                     {"data": "id"},
                     {"data": "pick"},
                     {"data": "deliver"},
+                    {
+                        "data": "id",
+                        render: function (data, type, row) {
+                            if (row['current_order']) {
+                                return row['current_order']['current_status']['status'];
+                            }
+                            return 'initiated';
+                        }
+                    },
                     {
                         "data": "id",
                         render: function (data, type, row) {
