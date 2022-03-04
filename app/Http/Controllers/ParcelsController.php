@@ -20,7 +20,7 @@ class ParcelsController extends Controller
 
     public function DTHandler(Request $request)
     {
-        $columns = ['id','pick', 'deliver'];
+        $columns = ['id', 'pick', 'deliver'];
 
         $draw = abs((int)$request->get('draw'));
         $length = abs((int)$request->get('length'));
@@ -41,19 +41,26 @@ class ParcelsController extends Controller
         if (isset($request->get('search')['value'])) {
             $search = trim($request->get('search')['value']);
         }
-
-        $recordsFiltered = Parcel::where('sender_id', Auth::id())->count();
-
+        if (Auth::user()->type === 1) {
+            $recordsFiltered = Parcel::where('sender_id', Auth::id())->count();
+        } else {
+            $recordsFiltered = Parcel::count();
+        }
         $recordsTotal = $recordsFiltered;
-
         if ($search) {
-            $parcels = Parcel::where('sender_id', Auth::id())
-                ->where('pick', 'like', '%' . $search . '%')
-                ->orWhere('deliver', 'like', '%' . $search . '%')
+            $parcels = Parcel::select($columns);
+
+            if (Auth::user()->type === 1) {
+                $parcels = $parcels->where('sender_id', Auth::id());
+            }
+            $parcels = $parcels
+                ->where(function ($q) use ($search) {
+                    $q->where('pick', 'like', '%' . $search . '%')
+                        ->orWhere('deliver', 'like', '%' . $search . '%');
+                })
                 ->orderBy($col, $dir)
                 ->skip($start)
                 ->limit($length)
-                ->select($columns)
                 ->with('currentOrder.currentStatus')
                 ->get();
 
@@ -61,20 +68,22 @@ class ParcelsController extends Controller
                 ->orWhere('deliver', 'like', '%' . $search . '%')->count();
 
         } else {
-            $parcels = Parcel::where('sender_id', Auth::id())
+            $parcels = Parcel::select($columns)
                 ->orderBy($col, $dir)
                 ->skip($start)
                 ->limit($length)
-                ->select($columns)
-                ->with('currentOrder.currentStatus')
-                ->get();
+                ->with('currentOrder.currentStatus');
+            if (Auth::user()->type === 1) {
+                $parcels = $parcels->where('sender_id', Auth::id());
+            }
+            $parcels = $parcels->get();
         }
 
         return response()->json([
             "draw" => $draw,
             "recordsTotal" => $recordsTotal,
             "recordsFiltered" => $recordsFiltered,
-            "data" => $parcels->each(function($parcel){
+            "data" => $parcels->each(function ($parcel) {
                 $parcel->status = OrderStatuses::getParcelCurrentStatus($parcel);
             })
         ]);
