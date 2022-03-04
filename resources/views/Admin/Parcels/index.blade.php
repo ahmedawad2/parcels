@@ -105,15 +105,16 @@
                     {
                         "data": "id",
                         render: function (data, type, row) {
-                            if (row['current_order']) {
-                                return row['current_order']['current_status']['status'];
-                            }
-                            return 'initiated';
+                            return row['status'];
+                            // if (row['current_order']) {
+                            //     return row['current_order']['current_status']['status'];
+                            // }
+                            // return 'initiated';
                         }
                     },
                     {
                         "data": "id",
-                        render: function (data, type, row) {
+                        render: function (data) {
                             var edit = '<a href="{{route('parcels.edit', [':id'])}}" data-original-title="" title=""><i class="fa fa-pencil font-medium-3 mr-2"></i></a>';
                             return edit.replace(':id', data);
                         }

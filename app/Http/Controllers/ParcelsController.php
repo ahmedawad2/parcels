@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Abstraction\Classes\BusinessLogic\OrderStatuses;
 use App\Http\Requests\Parcels\ParcelCreateRequest;
 use App\Models\Parcel;
 use Illuminate\Http\Request;
@@ -73,7 +74,9 @@ class ParcelsController extends Controller
             "draw" => $draw,
             "recordsTotal" => $recordsTotal,
             "recordsFiltered" => $recordsFiltered,
-            "data" => $parcels
+            "data" => $parcels->each(function($parcel){
+                $parcel->status = OrderStatuses::getParcelCurrentStatus($parcel);
+            })
         ]);
     }
 
