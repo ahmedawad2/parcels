@@ -8,8 +8,7 @@
                 <li class="breadcrumb-item"><a
                         href="{{route('dashboard')}}">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">{{ $layoutTitle }} Index
-                </li>
+                <li class="breadcrumb-item active">{{ $layoutTitle }}</li>
             </ol>
         </div>
     </div>
