@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CerateParclesTable extends Migration
+class CreateParcelsTable extends Migration
 {
-    private string $table = 'parcles';
+    private string $table = 'parcels';
 
     public function up()
     {
