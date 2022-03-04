@@ -10,14 +10,16 @@
                 class="menu-title">Parcels</span>
         </a>
         <ul class="menu-content">
-            <li class="">
-                <a href="{{route('parcels.index')}}"
-                   class="menu-item">Index</a>
-            </li>
-            <li class="">
-                <a href="{{route('parcels.create')}}"
-                   class="menu-item">Create</a>
-            </li>
+            @if(\Illuminate\Support\Facades\Auth::user()->type === 1)
+                <li class="">
+                    <a href="{{route('sender.parcels.index')}}"
+                       class="menu-item">Index</a>
+                </li>
+                <li class="">
+                    <a href="{{route('sender.parcels.create')}}"
+                       class="menu-item">Create</a>
+                </li>
+            @endif
         </ul>
     </li>
 

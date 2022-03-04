@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Sender;
 
 
 use App\Abstraction\Classes\BusinessLogic\OrderStatuses;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Parcels\ParcelCreateRequest;
 use App\Models\Parcel;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class ParcelsController extends Controller
 
     public function index()
     {
-        return view('Admin.Parcels.index');
+        return view('Admin.Senders.Parcels.index');
     }
 
     public function DTHandler(Request $request)
@@ -41,19 +42,10 @@ class ParcelsController extends Controller
         if (isset($request->get('search')['value'])) {
             $search = trim($request->get('search')['value']);
         }
-        if (Auth::user()->type === 1) {
-            $recordsFiltered = Parcel::where('sender_id', Auth::id())->count();
-        } else {
-            $recordsFiltered = Parcel::count();
-        }
+        $recordsFiltered = Parcel::where('sender_id', Auth::id())->count();
         $recordsTotal = $recordsFiltered;
         if ($search) {
-            $parcels = Parcel::select($columns);
-
-            if (Auth::user()->type === 1) {
-                $parcels = $parcels->where('sender_id', Auth::id());
-            }
-            $parcels = $parcels
+            $parcels = Parcel::where('sender_id', Auth::id())
                 ->where(function ($q) use ($search) {
                     $q->where('pick', 'like', '%' . $search . '%')
                         ->orWhere('deliver', 'like', '%' . $search . '%');
@@ -62,21 +54,24 @@ class ParcelsController extends Controller
                 ->skip($start)
                 ->limit($length)
                 ->with('currentOrder.currentStatus')
+                ->select($columns)
                 ->get();
 
-            $recordsFiltered = Parcel::where('pick', 'like', '%' . $search . '%')
-                ->orWhere('deliver', 'like', '%' . $search . '%')->count();
+            $recordsFiltered = Parcel::where('sender_id', Auth::id())
+                ->where(function ($q) use ($search) {
+                    $q->where('pick', 'like', '%' . $search . '%')
+                        ->orWhere('deliver', 'like', '%' . $search . '%');
+                })
+                ->count();
 
         } else {
-            $parcels = Parcel::select($columns)
+            $parcels = Parcel::where('sender_id', Auth::id())
                 ->orderBy($col, $dir)
                 ->skip($start)
                 ->limit($length)
-                ->with('currentOrder.currentStatus');
-            if (Auth::user()->type === 1) {
-                $parcels = $parcels->where('sender_id', Auth::id());
-            }
-            $parcels = $parcels->get();
+                ->with('currentOrder.currentStatus')
+                ->select($columns)
+                ->get();
         }
 
         return response()->json([
@@ -91,7 +86,7 @@ class ParcelsController extends Controller
 
     public function create()
     {
-        return view('Admin.Parcels.create');
+        return view('Admin.Senders.Parcels.create');
     }
 
     public function store(ParcelCreateRequest $request)

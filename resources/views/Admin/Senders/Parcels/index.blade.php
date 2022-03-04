@@ -29,13 +29,15 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">{{ $layoutTitle}}</h4>
-                        <div class="heading-elements">
-                            <a href="{{route('parcels.create')}}"
-                               class="btn btn-blue">Add {{Str::singular($layoutTitle)}}</a>
+                    @if(\Illuminate\Support\Facades\Auth::user()->type === 1)
+                        <div class="card-header">
+                            <h4 class="card-title">{{ $layoutTitle}}</h4>
+                            <div class="heading-elements">
+                                <a href="{{route('sender.parcels.create')}}"
+                                   class="btn btn-blue">Add {{Str::singular($layoutTitle)}}</a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <div class="card-body">
                         <div class="card-block">
                             <table class="table">
@@ -86,7 +88,7 @@
                     "emptyTable": "No Data"
                 },
                 "ajax": {
-                    "url": "{{route('parcels.DTHandler')}}",
+                    "url": "{{route('sender.parcels.DTHandler')}}",
                     "type": "POST",
                     "data": {
                         "_token": "{{ csrf_token() }}"
@@ -115,7 +117,7 @@
                     {
                         "data": "id",
                         render: function (data) {
-                            var edit = '<a href="{{route('parcels.edit', [':id'])}}" data-original-title="" title=""><i class="fa fa-pencil font-medium-3 mr-2"></i></a>';
+                            var edit = '<a href="{{route('sender.parcels.edit', [':id'])}}" data-original-title="" title=""><i class="fa fa-pencil font-medium-3 mr-2"></i></a>';
                             return edit.replace(':id', data);
                         }
                     }

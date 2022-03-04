@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ParcelsController;
+use App\Http\Controllers\Sender\ParcelsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +25,14 @@ Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard')
 
 
 Route::group([
-    'middleware' => 'auth'
+    'middleware' => 'auth',
+    'prefix' => 'sender',
+
 ], function () {
-    Route::resource('parcels', ParcelsController::class);
-    Route::post('parcels/DTHandler', [ParcelsController::class, 'DTHandler'])->name('parcels.DTHandler');
+    Route::name('sender')->resource('parcels', ParcelsController::class);
+    Route::post('parcels/DTHandler', [ParcelsController::class, 'DTHandler'])->name('sender.parcels.DTHandler');
+});
+
+Route::name('sender.')->group(function (){
+
 });
