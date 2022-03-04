@@ -72,7 +72,6 @@
     <script>
         $(function () {
             var operatorData = $('.table').DataTable({
-                // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 'paging': true,
                 'searching': true,
                 'ordering': false,
@@ -97,52 +96,20 @@
                 scrollY: 550,
                 scrollCollapse: true,
                 "rowId": "id",
-                // "order": [[5, 'desc']],
                 "dom": 'Blfrtp',
-                // "buttons": [
-                //     {
-                //         extend: 'excelHtml5',
-                //         // text: 'Export XLSX',
-                //     },
-                //     {
-                //         extend: 'pdfHtml5',
-                //         // text: 'Export PDF',
-                //         orientation: 'landscape',//landscape give you more space
-                //         // pageSize: 'A0',//A0 is the largest A5 smallest(A0,A1,A2,A3,legal,A4,A5,letter))
-                //     }
-                // ],
                 "columns": [
                     {"data": "id"},
                     {"data": "pick"},
                     {"data": "deliver"},
                     {
                         "data": "id",
-                        // name: 'isActive',
                         render: function (data, type, row) {
                             var edit = '<a href="{{route('parcels.edit', [':id'])}}" data-original-title="" title=""><i class="fa fa-pencil font-medium-3 mr-2"></i></a>';
                             return edit.replace(':id', data);
                         }
                     }
-                    // {
-                    //     "data": "id",
-                    //     render: function (data, type, row) {
-                    //         var div = $('<div></div>');
-                    //
-                    //         if (row.blacklisted) {
-                    //             div.append('<button type="button" class="btn btn-sm btn-danger mb-1 blacklist" value="' + blacklist_value_true + '">' + blacklist_text_true + '</button>');
-                    //         } else {
-                    //             div.append('<button type="button" class="btn btn-sm btn-success mb-1 blacklist" value="' + blacklist_value_false + '">' + blacklist_text_false + '</button>');
-                    //         }
-                    //         div.append('<input type="hidden" value="' + row['msisdn'] + '" />');
-                    //         return div.html();
-                    //     },
-                    //     orderable: false
-                    // }
                 ],
                 orderable: false
-                // ,drawCallback: function () {
-                //
-                // }
             });
         });
     </script>
