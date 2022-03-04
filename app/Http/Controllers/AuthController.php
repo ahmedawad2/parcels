@@ -12,7 +12,7 @@ class AuthController
         if (Auth::check()) {
             return redirect()->intended('dashboard');
         }
-        return view('Auth.login');
+        return view('Admin.Auth.login');
     }
 
     public function loginAttempt(Request $request)
@@ -24,7 +24,7 @@ class AuthController
             'password' => [
                 'required'
             ],
-            'type' =>[
+            'type' => [
                 'required',
                 'in:1,2'
             ]
@@ -43,6 +43,14 @@ class AuthController
 
     public function dashboard()
     {
-        return 'welcome';
+        return view('Admin.Dashboard.index');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
     }
 }
