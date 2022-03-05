@@ -29,9 +29,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">{{ $layoutTitle}}</h4>
-                        </div>
+                    <div class="card-header">
+                        <h4 class="card-title">{{ $layoutTitle}}</h4>
+                    </div>
                     <div class="card-body">
                         <div class="card-block">
                             <table class="table">
@@ -51,7 +51,6 @@
             </div>
         </div>
     </section>
-    <!--Basic Table Ends-->
 @endsection
 
 @section('scripts')
@@ -100,12 +99,47 @@
                     {
                         "data": "id",
                         render: function (data) {
-                            var edit = '<a href="{{route('biker.parcels.edit', [':id'])}}" data-original-title="" title=""><i class="fa fa-pencil font-medium-3 mr-2"></i></a>';
-                            return edit.replace(':id', data);
+                            var model = '<button type="button" class="btn mr-1 mb-1 btn-primary btn-sm" data-toggle="modal" data-target="#parcel' + data + '">Reserve</button>'
+                            model += '<div class="modal fade text-xs-left" id="parcel' + data + '" tabindex="-1" role="dialog" aria-hidden="true">';
+                            model += ' <div class="modal-dialog modal-sm" role="document">'
+                                + '<div class="modal-content">'
+                                + '<div class="modal-header">'
+                                + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>'
+                                + '<h4 class="modal-title">Confirmation</h4>'
+                                + '</div><div class="modal-body">'
+                                + '<h5>Are you sure you want to pick parcel #' + data + '</h5></div>'
+                                + '<div class="modal-footer">'
+                                + '<button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>'
+                                + '<button type="button" class="btn btn-outline-primary reserveParcel" data-dismiss="modal" value="' + data + '">Yes</button>'
+                                + '</div></div></div>';
+                            return model;
                         }
                     }
                 ],
-                orderable: false
+                orderable: false,
+                drawCallback: function () {
+                    $('.reserveParcel').on('click', function () {
+                        var target = $(this);
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ route('biker.parcels.reserveParcel') }}",
+                            data: {
+                                'id': target.val(),
+                                '_token': '{{ csrf_token() }}'
+                            },
+
+                            success: function (data) {
+                                if (data['status'] === true) {
+                                    toastr.success('success');
+                                } else {
+                                    toastr.error('something went wrong');
+                                }
+                                $('.modal-backdrop').remove();
+                                target.closest('tr').remove();
+                            }
+                        });
+                    });
+                }
             });
         });
     </script>

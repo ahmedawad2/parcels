@@ -9,19 +9,19 @@ class FeedbackMessagesClass
     const TOASTR_SUCCESS = 'Created Successfully';
     const TOASTR_ERROR = 'Error Occurred !';
 
-    public static function success(): array
+    public static function feedback(string $type, string $message = null): array
     {
+        switch ($type) {
+            case self::ERROR:
+                $message = $message ?? self::TOASTR_ERROR;
+                break;
+            default:
+                $message = $message ?? self::TOASTR_SUCCESS;
+                break;
+        }
         return [
-            'type' => self::SUCCESS,
-            'message' => self::TOASTR_SUCCESS
-        ];
-    }
-
-    public static function error(): array
-    {
-        return [
-            'type' => self::ERROR,
-            'message' => self::TOASTR_ERROR
+            'type' => $type,
+            'message' => $message
         ];
     }
 }

@@ -182,8 +182,6 @@
         type="text/javascript"></script>
 <!-- END STACK JS-->
 <!-- BEGIN PAGE LEVEL JS-->
-
-
 <!-- date picker js -->
 <script
     src="{{asset('assets/admin/')}}/app-assets/js/scripts/pickers/dateTime/picker-date-time.min.js"
@@ -199,8 +197,6 @@
 <script>
     $(function () {
         $('a[href="{{URL::current()}}"]').parent().addClass('active');
-        {{--toastr.success("{{ 'asdas asdjasdas' }}");--}}
-        {{--toastr.("{{ 'asdas asdjasdas' }}");--}}
         @if(session()->has('feedback'))
         toastr.{{ session()->get('feedback')['type'] }}("{{ session()->get('feedback')['message'] }}");
         @endif

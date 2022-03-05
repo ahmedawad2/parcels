@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('parcel_id')->references('id')->on('parcels')
                 ->onDelete('cascade');
 
-            $table->unsignedBigInteger('biker_id')->nullable();
+            $table->unsignedBigInteger('biker_id');
             $table->foreign('biker_id')->references('id')->on('users')
                 ->onDelete('cascade');
 

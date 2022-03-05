@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Biker;
 
 use App\Abstraction\Classes\BusinessLogic\OrderStatuses;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\OrderStatus;
 use App\Models\Parcel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ParcelsController extends Controller
 {
@@ -75,5 +78,33 @@ class ParcelsController extends Controller
             "recordsFiltered" => $recordsFiltered,
             "data" => $parcels
         ]);
+    }
+
+    public function reserveParcel(Request $request)
+    {
+        try {
+            $parcel = Parcel::forBikers()
+                ->where('id', $request->get('id'))
+                ->select(['id'])
+                ->first();
+            if ($parcel) {
+                $order = Order::create([
+                    'parcel_id' => $request->get('id'),
+                    'biker_id' => Auth::id()
+                ]);
+                OrderStatus::create([
+                    'order_id' => $order->id,
+                    'status' => OrderStatuses::STATUS_RESERVED
+                ]);
+                return [
+                    'status' => true
+                ];
+            }
+        } catch (\Throwable $t) {
+
+        }
+        return [
+            'status' => false
+        ];
     }
 }

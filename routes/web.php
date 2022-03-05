@@ -41,5 +41,6 @@ Route::group([
 ], function () {
     Route::name('biker')->resource('parcels', \App\Http\Controllers\Biker\ParcelsController::class);
     Route::post('parcels/DTHandler', [\App\Http\Controllers\Biker\ParcelsController::class, 'DTHandler'])->name('biker.parcels.DTHandler');
+    Route::post('parcels/reserveParcel', [\App\Http\Controllers\Biker\ParcelsController::class, 'reserveParcel'])->name('biker.parcels.reserveParcel');
 });
 

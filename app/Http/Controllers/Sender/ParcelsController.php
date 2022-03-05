@@ -98,7 +98,7 @@ class ParcelsController extends Controller
             'deliver' => $request->get('deliver'),
         ]);
         return redirect()->route('sender.parcels.index')->with([
-            'feedback' => FeedbackMessagesClass::success()
+            'feedback' => FeedbackMessagesClass::feedback(FeedbackMessagesClass::SUCCESS)
         ]);
     }
 

@@ -6,7 +6,7 @@ use App\Models\Parcel;
 
 class OrderStatuses
 {
-    const STATUS_CREATED = 1;
+    const STATUS_RESERVED = 1;
     const STATUS_PICKED = 2;
     const STATUS_DELIVERED = 3;
     const STATUS_CANCELED = 4;
@@ -21,8 +21,8 @@ class OrderStatuses
     private static function translate(int $status): string
     {
         switch ($status) {
-            case self::STATUS_CREATED:
-                return 'CREATED';
+            case self::STATUS_RESERVED:
+                return 'RESERVED';
             case self::STATUS_PICKED:
                 return 'PICKED';
             case self::STATUS_DELIVERED:
