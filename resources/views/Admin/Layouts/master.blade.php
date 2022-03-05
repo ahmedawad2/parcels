@@ -26,6 +26,8 @@
           href="{{asset('assets/admin/')}}/app-assets/fonts/flag-icon-css/css/flag-icon.min.css">
     <link rel="stylesheet" type="text/css"
           href="{{asset('assets/admin/')}}/app-assets/vendors/css/extensions/pace.css">
+    <link rel="stylesheet" type="text/css"
+          href="{{asset('assets/admin/')}}/app-assets/vendors/css/extensions/toastr.css">
     <!-- END VENDOR CSS-->
     <!-- BEGIN STACK CSS-->
     <link rel="stylesheet" type="text/css"
@@ -56,6 +58,9 @@
           href="{{asset('assets/admin/')}}/app-assets/css/core/menu/menu-types/vertical-overlay-menu.min.css">
     <link rel="stylesheet" type="text/css"
           href="{{asset('assets/admin/')}}/app-assets/css/core/colors/palette-gradient.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="{{asset('assets/admin/')}}/app-assets/css/plugins/extensions/toastr.min.css">
+
 
     <!-- date picker css -->
     <link rel="stylesheet" type="text/css"
@@ -163,7 +168,10 @@
 <!-- select js -->
 <script src="{{asset('assets/admin/')}}/app-assets/vendors/js/forms/select/select2.full.min.js"
         type="text/javascript"></script>
-
+<script src="{{asset('assets/admin/')}}/app-assets/vendors/js/extensions/toastr.min.js"
+        type="text/javascript"></script>
+<script src="{{asset('assets/admin/')}}/app-assets/js/scripts/extensions/toastr.min.js"
+        type="text/javascript"></script>
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN STACK JS-->
 <script src="{{asset('assets/admin/')}}/app-assets/js/core/app-menu.min.js"
@@ -191,6 +199,11 @@
 <script>
     $(function () {
         $('a[href="{{URL::current()}}"]').parent().addClass('active');
+        {{--toastr.success("{{ 'asdas asdjasdas' }}");--}}
+        {{--toastr.("{{ 'asdas asdjasdas' }}");--}}
+        @if(session()->has('feedback'))
+        toastr.{{ session()->get('feedback')['type'] }}("{{ session()->get('feedback')['message'] }}");
+        @endif
     })
 </script>
 </body>
