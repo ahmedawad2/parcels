@@ -125,7 +125,7 @@
                                 + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>'
                                 + '<h4 class="modal-title">Confirmation</h4>'
                                 + '</div><div class="modal-body">'
-                                + '<h5>Are you sure you want to pick parcel #' + data + '</h5></div>'
+                                + '<h5>Are you sure you want to reserve parcel #' + data + '</h5></div>'
                                 + '<div class="modal-footer">'
                                 + '<button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>'
                                 + '<button type="button" class="btn btn-outline-primary reserveParcel" data-dismiss="modal" value="' + data + '">Yes</button>'
@@ -148,9 +148,9 @@
 
                             success: function (data) {
                                 if (data['status'] === true) {
-                                    toastr.success('success');
+                                    toastr.success('{{ \App\Abstraction\Classes\Common\FeedbackMessagesClass::TOASTR_SUCCESS }}');
                                 } else {
-                                    toastr.error('something went wrong');
+                                    toastr.error('{{ \App\Abstraction\Classes\Common\FeedbackMessagesClass::TOASTR_ERROR }}');
                                 }
                                 $('.modal-backdrop').remove();
                                 target.closest('tr').remove();
