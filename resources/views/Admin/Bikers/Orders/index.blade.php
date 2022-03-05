@@ -94,11 +94,7 @@
                 "rowId": "id",
                 "dom": 'Blfrtp',
                 "columns": [
-                    {
-                        render: function (data, type, row) {
-                            return row['parcel']['id'];
-                        }
-                    },
+                    {'data': 'id'},
                     {
                         render: function (data, type, row) {
                             return row['parcel']['pick'];
@@ -116,31 +112,34 @@
                     },
                     {
                         "data": "id",
-                        render: function (data) {
-                            var model = '<button type="button" class="btn mr-1 mb-1 btn-primary btn-sm" data-toggle="modal" data-target="#parcel' + data + '">Reserve</button>'
-                            model += '<div class="modal fade text-xs-left" id="parcel' + data + '" tabindex="-1" role="dialog" aria-hidden="true">';
-                            model += ' <div class="modal-dialog modal-sm" role="document">'
-                                + '<div class="modal-content">'
-                                + '<div class="modal-header">'
-                                + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>'
-                                + '<h4 class="modal-title">Confirmation</h4>'
-                                + '</div><div class="modal-body">'
-                                + '<h5>Are you sure you want to reserve parcel #' + data + '</h5></div>'
-                                + '<div class="modal-footer">'
-                                + '<button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>'
-                                + '<button type="button" class="btn btn-outline-primary reserveParcel" data-dismiss="modal" value="' + data + '">Yes</button>'
-                                + '</div></div></div>';
-                            return model;
+                        render: function (data, type, row) {
+                            var cancel = '';
+                            if (row['canBeCanceled']) {
+                                cancel = '<button type="button" class="btn mr-1 mb-1 btn-danger btn-sm" data-toggle="modal" data-target="#order' + data + '">Cancel</button>'
+                                cancel += '<div class="modal fade text-xs-left" id="order' + data + '" tabindex="-1" role="dialog" aria-hidden="true">';
+                                cancel += ' <div class="modal-dialog modal-sm" role="document">'
+                                    + '<div class="modal-content">'
+                                    + '<div class="modal-header">'
+                                    + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>'
+                                    + '<h4 class="modal-title">Confirmation</h4>'
+                                    + '</div><div class="modal-body">'
+                                    + '<h5>Are you sure you want to cancel order #' + data + '</h5></div>'
+                                    + '<div class="modal-footer">'
+                                    + '<button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>'
+                                    + '<button type="button" class="btn btn-outline-primary cancelOrder" data-dismiss="modal" value="' + data + '">Yes</button>'
+                                    + '</div></div></div>';
+                            }
+                            return cancel;
                         }
                     }
                 ],
                 orderable: false,
                 drawCallback: function () {
-                    $('.reserveParcel').on('click', function () {
+                    $('.cancelOrder').on('click', function () {
                         var target = $(this);
                         $.ajax({
                             type: "POST",
-                            url: "{{ route('biker.parcels.reserveParcel') }}",
+                            url: "{{ route('biker.orders.cancel') }}",
                             data: {
                                 'id': target.val(),
                                 '_token': '{{ csrf_token() }}'
@@ -148,12 +147,15 @@
 
                             success: function (data) {
                                 if (data['status'] === true) {
-                                    toastr.success('{{ \App\Abstraction\Classes\Common\FeedbackMessagesClass::TOASTR_SUCCESS }}');
+                                    toastr.success('{{ \App\Abstraction\Classes\Common\FeedbackMessages::TOASTR_SUCCESS }}');
                                 } else {
-                                    toastr.error('{{ \App\Abstraction\Classes\Common\FeedbackMessagesClass::TOASTR_ERROR }}');
+                                    toastr.error('{{ \App\Abstraction\Classes\Common\FeedbackMessages::TOASTR_ERROR }}');
                                 }
                                 $('.modal-backdrop').remove();
-                                target.closest('tr').remove();
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 700);
+
                             }
                         });
                     });

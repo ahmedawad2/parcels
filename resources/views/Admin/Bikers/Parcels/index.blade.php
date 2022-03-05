@@ -130,9 +130,9 @@
 
                             success: function (data) {
                                 if (data['status'] === true) {
-                                    toastr.success('{{ \App\Abstraction\Classes\Common\FeedbackMessagesClass::TOASTR_SUCCESS }}');
+                                    toastr.success('{{ \App\Abstraction\Classes\Common\FeedbackMessages::TOASTR_SUCCESS }}');
                                 } else {
-                                    toastr.error('{{ \App\Abstraction\Classes\Common\FeedbackMessagesClass::TOASTR_ERROR }}');
+                                    toastr.error('{{ \App\Abstraction\Classes\Common\FeedbackMessages::TOASTR_ERROR }}');
                                 }
                                 $('.modal-backdrop').remove();
                                 target.closest('tr').remove();

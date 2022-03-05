@@ -20,7 +20,7 @@ class OrderStatuses
             : self::translate(1);
     }
 
-    public static function getOrderCurrentStatus(Order $order): string
+    public static function localizeOrderCurrentStatus(Order $order): string
     {
         return self::translate($order->currentStatus->status);
     }

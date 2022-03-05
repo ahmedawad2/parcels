@@ -15,14 +15,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('login', [AuthController::class, 'login'])
+    ->name('login');
+Route::post('login', [AuthController::class, 'loginAttempt'])
+    ->name('loginAttempt');
+Route::get('logout', [AuthController::class, 'logout'])
+    ->name('logout');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('login', [AuthController::class, 'login'])->name('login');
-Route::post('login', [AuthController::class, 'loginAttempt'])->name('loginAttempt');
-Route::get('logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+Route::get('dashboard', [AuthController::class, 'dashboard'])
+    ->name('dashboard')
+    ->middleware('auth');
 
 
 Route::group([
@@ -31,10 +33,10 @@ Route::group([
         'sender'
     ],
     'prefix' => 'sender',
-
 ], function () {
     Route::name('sender')->resource('parcels', ParcelsController::class);
-    Route::post('parcels/DTHandler', [ParcelsController::class, 'DTHandler'])->name('sender.parcels.DTHandler');
+    Route::post('parcels/DTHandler', [ParcelsController::class, 'DTHandler'])
+        ->name('sender.parcels.DTHandler');
 });
 
 
@@ -44,13 +46,17 @@ Route::group([
         'biker'
     ],
     'prefix' => 'biker',
-
 ], function () {
+    Route::post('orders/cancel', [OrdersController::class, 'cancel'])
+        ->name('biker.orders.cancel');
     Route::name('biker')->resource('parcels', \App\Http\Controllers\Biker\ParcelsController::class);
-    Route::post('parcels/DTHandler', [\App\Http\Controllers\Biker\ParcelsController::class, 'DTHandler'])->name('biker.parcels.DTHandler');
+    Route::post('parcels/DTHandler', [\App\Http\Controllers\Biker\ParcelsController::class, 'DTHandler'])
+        ->name('biker.parcels.DTHandler');
     Route::name('biker')->resource('orders', OrdersController::class);
-    Route::post('parcels/reserveParcel', [\App\Http\Controllers\Biker\ParcelsController::class, 'reserveParcel'])->name('biker.parcels.reserveParcel');
-    Route::post('orders/DTHandler', [\App\Http\Controllers\Biker\OrdersController::class, 'DTHandler'])->name('biker.orders.DTHandler');
+    Route::post('parcels/reserveParcel', [\App\Http\Controllers\Biker\ParcelsController::class, 'reserveParcel'])
+        ->name('biker.parcels.reserveParcel');
+    Route::post('orders/DTHandler', [OrdersController::class, 'DTHandler'])
+        ->name('biker.orders.DTHandler');
 });
 
 Route::get('notFound', function () {

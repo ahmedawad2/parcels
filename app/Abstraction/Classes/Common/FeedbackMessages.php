@@ -2,7 +2,7 @@
 
 namespace App\Abstraction\Classes\Common;
 
-class FeedbackMessagesClass
+class FeedbackMessages
 {
     const SUCCESS = 'success';
     const ERROR = 'error';

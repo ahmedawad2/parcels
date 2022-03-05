@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Sender;
 
 
 use App\Abstraction\Classes\BusinessLogic\OrderStatuses;
-use App\Abstraction\Classes\Common\FeedbackMessagesClass;
+use App\Abstraction\Classes\Common\FeedbackMessages;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Parcels\ParcelCreateRequest;
 use App\Models\Parcel;
@@ -98,7 +98,7 @@ class ParcelsController extends Controller
             'deliver' => $request->get('deliver'),
         ]);
         return redirect()->route('sender.parcels.index')->with([
-            'feedback' => FeedbackMessagesClass::feedback(FeedbackMessagesClass::SUCCESS)
+            'feedback' => FeedbackMessages::feedback(FeedbackMessages::SUCCESS)
         ]);
     }
 

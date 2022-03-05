@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Biker;
 
+use App\Abstraction\Classes\BusinessLogic\ManipulateOrderStatus;
 use App\Abstraction\Classes\BusinessLogic\OrderStatuses;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
@@ -86,8 +87,28 @@ class OrdersController extends Controller
             "recordsTotal" => $recordsTotal,
             "recordsFiltered" => $recordsFiltered,
             "data" => $orders->each(function ($order) {
-                $order->status = OrderStatuses::getOrderCurrentStatus($order);
+                $order->status = OrderStatuses::localizeOrderCurrentStatus($order);
+                $order->canBeCanceled = ManipulateOrderStatus::canBeCanceled($order->currentStatus->status);
             })
         ]);
+    }
+
+    public function cancel(Request $request)
+    {
+        $order = Order::where('id', intval($request->get('id')))
+            ->where('biker_id', Auth::id())
+            ->with('currentStatus')
+            ->first();
+        if ($order
+            && ManipulateOrderStatus::canBeCanceled($order->currentStatus->status)
+            && ManipulateOrderStatus::cancelOrder($order->id)
+        ) {
+            return [
+                'status' => true
+            ];
+        }
+        return [
+            'status' => false
+        ];
     }
 }
