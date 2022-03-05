@@ -10,7 +10,7 @@
                 class="menu-title">Parcels</span>
         </a>
         <ul class="menu-content">
-            @if(\Illuminate\Support\Facades\Auth::user()->type === 1)
+            @if(\App\Models\User::isSender(\Illuminate\Support\Facades\Auth::user()))
                 <li class="">
                     <a href="{{route('sender.parcels.index')}}"
                        class="menu-item">Index</a>
@@ -19,7 +19,7 @@
                     <a href="{{route('sender.parcels.create')}}"
                        class="menu-item">Create</a>
                 </li>
-            @elseif(\Illuminate\Support\Facades\Auth::user()->type === 2)
+            @elseif(\App\Models\User::isBiker(\Illuminate\Support\Facades\Auth::user()))
                 <li class="">
                     <a href="{{route('biker.parcels.index')}}"
                        class="menu-item">Index</a>
@@ -28,7 +28,7 @@
         </ul>
     </li>
 
-    @if(\Illuminate\Support\Facades\Auth::user()->type === 2)
+    @if(\App\Models\User::isBiker(\Illuminate\Support\Facades\Auth::user()))
         <li class="nav-item"><a href="{{route('biker.orders.index')}}">
                 <i class="ft-home"></i><span class="menu-title">Orders</span>
             </a>

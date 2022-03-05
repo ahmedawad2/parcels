@@ -26,4 +26,14 @@ class User extends Authenticatable
     ];
 
     public $timestamps = false;
+
+    public static function isSender(User $user)
+    {
+        return $user->type === 1;
+    }
+
+    public static function isBiker(User $user)
+    {
+        return $user->type === 2;
+    }
 }

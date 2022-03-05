@@ -7,10 +7,11 @@ use App\Models\Parcel;
 
 class OrderStatuses
 {
-    const STATUS_RESERVED = 1;
-    const STATUS_PICKED = 2;
-    const STATUS_DELIVERED = 3;
-    const STATUS_CANCELED = 4;
+    const STATUS_CREATED = 1;
+    const STATUS_RESERVED = 2;
+    const STATUS_PICKED = 3;
+    const STATUS_DELIVERED = 4;
+    const STATUS_CANCELED = 5;
 
     public static function getParcelCurrentStatus(Parcel $parcel): string
     {
@@ -36,7 +37,7 @@ class OrderStatuses
             case self::STATUS_CANCELED:
                 return 'CANCELED';
             default:
-                return '';
+                return 'CREATED';
         }
     }
 }
