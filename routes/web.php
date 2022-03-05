@@ -26,7 +26,10 @@ Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard')
 
 
 Route::group([
-    'middleware' => 'auth',
+    'middleware' => [
+        'auth',
+        'sender'
+    ],
     'prefix' => 'sender',
 
 ], function () {
@@ -36,7 +39,10 @@ Route::group([
 
 
 Route::group([
-    'middleware' => 'auth',
+    'middleware' => [
+        'auth',
+        'biker'
+    ],
     'prefix' => 'biker',
 
 ], function () {
@@ -46,4 +52,8 @@ Route::group([
     Route::post('parcels/reserveParcel', [\App\Http\Controllers\Biker\ParcelsController::class, 'reserveParcel'])->name('biker.parcels.reserveParcel');
     Route::post('orders/DTHandler', [\App\Http\Controllers\Biker\OrdersController::class, 'DTHandler'])->name('biker.orders.DTHandler');
 });
+
+Route::get('notFound', function () {
+    return view('Admin.Errors.404');
+})->name('404');
 
