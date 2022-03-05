@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Biker\OrdersController;
 use App\Http\Controllers\Sender\ParcelsController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,8 @@ Route::group([
 ], function () {
     Route::name('biker')->resource('parcels', \App\Http\Controllers\Biker\ParcelsController::class);
     Route::post('parcels/DTHandler', [\App\Http\Controllers\Biker\ParcelsController::class, 'DTHandler'])->name('biker.parcels.DTHandler');
+    Route::name('biker')->resource('orders', OrdersController::class);
     Route::post('parcels/reserveParcel', [\App\Http\Controllers\Biker\ParcelsController::class, 'reserveParcel'])->name('biker.parcels.reserveParcel');
+    Route::post('orders/DTHandler', [\App\Http\Controllers\Biker\OrdersController::class, 'DTHandler'])->name('biker.orders.DTHandler');
 });
 

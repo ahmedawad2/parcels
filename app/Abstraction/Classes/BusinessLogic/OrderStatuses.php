@@ -2,6 +2,7 @@
 
 namespace App\Abstraction\Classes\BusinessLogic;
 
+use App\Models\Order;
 use App\Models\Parcel;
 
 class OrderStatuses
@@ -16,6 +17,11 @@ class OrderStatuses
         return $parcel->currentOrder
             ? self::translate($parcel->currentOrder->currentStatus->status)
             : self::translate(1);
+    }
+
+    public static function getOrderCurrentStatus(Order $order): string
+    {
+        return self::translate($order->currentStatus->status);
     }
 
     private static function translate(int $status): string

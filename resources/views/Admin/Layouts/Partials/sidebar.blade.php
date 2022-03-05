@@ -28,4 +28,11 @@
         </ul>
     </li>
 
+    @if(\Illuminate\Support\Facades\Auth::user()->type === 2)
+        <li class="nav-item"><a href="{{route('biker.orders.index')}}">
+                <i class="ft-home"></i><span class="menu-title">Orders</span>
+            </a>
+        </li>
+    @endif
+
 </ul>
