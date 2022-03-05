@@ -29,15 +29,13 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    @if(\Illuminate\Support\Facades\Auth::user()->type === 1)
-                        <div class="card-header">
-                            <h4 class="card-title">{{ $layoutTitle}}</h4>
-                            <div class="heading-elements">
-                                <a href="{{route('sender.parcels.create')}}"
-                                   class="btn btn-blue">Add {{Str::singular($layoutTitle)}}</a>
-                            </div>
+                    <div class="card-header">
+                        <h4 class="card-title">{{ $layoutTitle}}</h4>
+                        <div class="heading-elements">
+                            <a href="{{route('sender.parcels.create')}}"
+                               class="btn btn-blue">Add {{Str::singular($layoutTitle)}}</a>
                         </div>
-                    @endif
+                    </div>
                     <div class="card-body">
                         <div class="card-block">
                             <table class="table">
@@ -108,10 +106,6 @@
                         "data": "id",
                         render: function (data, type, row) {
                             return row['status'];
-                            // if (row['current_order']) {
-                            //     return row['current_order']['current_status']['status'];
-                            // }
-                            // return 'initiated';
                         }
                     },
                     {

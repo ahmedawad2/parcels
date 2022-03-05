@@ -29,15 +29,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    @if(\Illuminate\Support\Facades\Auth::user()->type === 1)
                         <div class="card-header">
                             <h4 class="card-title">{{ $layoutTitle}}</h4>
-                            <div class="heading-elements">
-                                <a href="{{route('biker.parcels.create')}}"
-                                   class="btn btn-blue">Add {{Str::singular($layoutTitle)}}</a>
-                            </div>
                         </div>
-                    @endif
                     <div class="card-body">
                         <div class="card-block">
                             <table class="table">

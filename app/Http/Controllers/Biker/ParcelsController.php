@@ -6,10 +6,11 @@ use App\Abstraction\Classes\BusinessLogic\OrderStatuses;
 use App\Http\Controllers\Controller;
 use App\Models\Parcel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ParcelsController extends Controller
 {
+    public static string $layoutTitle = 'Parcels';
+
     public function index()
     {
         return view('Admin.Bikers.Parcels.index');
@@ -72,9 +73,7 @@ class ParcelsController extends Controller
             "draw" => $draw,
             "recordsTotal" => $recordsTotal,
             "recordsFiltered" => $recordsFiltered,
-            "data" => $parcels->each(function ($parcel) {
-                $parcel->status = OrderStatuses::getParcelCurrentStatus($parcel);
-            })
+            "data" => $parcels
         ]);
     }
 }
