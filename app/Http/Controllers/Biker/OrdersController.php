@@ -89,6 +89,7 @@ class OrdersController extends Controller
             "data" => $orders->each(function ($order) {
                 $order->status = OrderStatuses::localizeOrderCurrentStatus($order);
                 $order->canBeCanceled = ManipulateOrderStatus::canBeCanceled($order->currentStatus->status);
+                $order->canBeProgressed = ManipulateOrderStatus::canBeProgressed($order->currentStatus->status);
             })
         ]);
     }
@@ -102,6 +103,25 @@ class OrdersController extends Controller
         if ($order
             && ManipulateOrderStatus::canBeCanceled($order->currentStatus->status)
             && ManipulateOrderStatus::cancelOrder($order->id)
+        ) {
+            return [
+                'status' => true
+            ];
+        }
+        return [
+            'status' => false
+        ];
+    }
+
+    public function progress(Request $request)
+    {
+        $order = Order::where('id', intval($request->get('id')))
+            ->where('biker_id', Auth::id())
+            ->with('currentStatus')
+            ->first();
+        if ($order
+            && ManipulateOrderStatus::canBeProgressed($order->currentStatus->status)
+            && ManipulateOrderStatus::progressOrder($order->id, $order->currentStatus->status)
         ) {
             return [
                 'status' => true

@@ -99,11 +99,11 @@
                     {
                         "data": "id",
                         render: function (data) {
-                            var model = '<button type="button" class="btn mr-1 mb-1 btn-primary btn-sm" data-toggle="modal" data-target="#parcel' + data + '">Reserve</button>'
+                            var model = '<button type="button" class="btn mr-1 mb-1 btn-info btn-sm" data-toggle="modal" data-target="#parcel' + data + '">Reserve</button>'
                             model += '<div class="modal fade text-xs-left" id="parcel' + data + '" tabindex="-1" role="dialog" aria-hidden="true">';
                             model += ' <div class="modal-dialog modal-sm" role="document">'
                                 + '<div class="modal-content">'
-                                + '<div class="modal-header">'
+                                + '<div class="modal-header bg-info">'
                                 + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>'
                                 + '<h4 class="modal-title">Confirmation</h4>'
                                 + '</div><div class="modal-body">'

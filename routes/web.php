@@ -49,6 +49,8 @@ Route::group([
 ], function () {
     Route::post('orders/cancel', [OrdersController::class, 'cancel'])
         ->name('biker.orders.cancel');
+    Route::post('orders/progress', [OrdersController::class, 'progress'])
+        ->name('biker.orders.progress');
     Route::name('biker')->resource('parcels', \App\Http\Controllers\Biker\ParcelsController::class);
     Route::post('parcels/DTHandler', [\App\Http\Controllers\Biker\ParcelsController::class, 'DTHandler'])
         ->name('biker.parcels.DTHandler');

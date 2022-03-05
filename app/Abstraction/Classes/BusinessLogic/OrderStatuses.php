@@ -40,4 +40,16 @@ class OrderStatuses
                 return 'CREATED';
         }
     }
+
+    public static function nextProgressStatus(int $currentStatus): int
+    {
+        switch ($currentStatus) {
+            case self::STATUS_RESERVED:
+                return self::STATUS_PICKED;
+            case self::STATUS_PICKED:
+                return self::STATUS_DELIVERED;
+            default:
+                throw new \Exception('undefined next status');
+        }
+    }
 }

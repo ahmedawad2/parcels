@@ -113,13 +113,13 @@
                     {
                         "data": "id",
                         render: function (data, type, row) {
-                            var cancel = '';
+                            var response = '';
                             if (row['canBeCanceled']) {
-                                cancel = '<button type="button" class="btn mr-1 mb-1 btn-danger btn-sm" data-toggle="modal" data-target="#order' + data + '">Cancel</button>'
-                                cancel += '<div class="modal fade text-xs-left" id="order' + data + '" tabindex="-1" role="dialog" aria-hidden="true">';
-                                cancel += ' <div class="modal-dialog modal-sm" role="document">'
+                                response += '<button type="button" class="btn mr-1 mb-1 btn-danger btn-sm" data-toggle="modal" data-target="#cancelOrder' + data + '">Cancel</button>'
+                                response += '<div class="modal fade text-xs-left" id="cancelOrder' + data + '" tabindex="-1" role="dialog" aria-hidden="true">';
+                                response += ' <div class="modal-dialog modal-sm" role="document">'
                                     + '<div class="modal-content">'
-                                    + '<div class="modal-header">'
+                                    + '<div class="modal-header bg-danger">'
                                     + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>'
                                     + '<h4 class="modal-title">Confirmation</h4>'
                                     + '</div><div class="modal-body">'
@@ -127,19 +127,60 @@
                                     + '<div class="modal-footer">'
                                     + '<button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>'
                                     + '<button type="button" class="btn btn-outline-primary cancelOrder" data-dismiss="modal" value="' + data + '">Yes</button>'
-                                    + '</div></div></div>';
+                                    + '</div></div></div></div>';
                             }
-                            return cancel;
+                            if (row['canBeProgressed']) {
+                                response += '<button type="button" class="btn mr-1 mb-1 btn-info btn-sm" data-toggle="modal" data-target="#progressOrder' + data + '">Progress</button>'
+                                response += '<div class="modal fade text-xs-left" id="progressOrder' + data + '" tabindex="-1" role="dialog" aria-hidden="true">';
+                                response += ' <div class="modal-dialog modal-sm" role="document">'
+                                    + '<div class="modal-content">'
+                                    + '<div class="modal-header bg-info">'
+                                    + '<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>'
+                                    + '<h4 class="modal-title">Confirmation</h4>'
+                                    + '</div><div class="modal-body">'
+                                    + '<h5>Are you sure you want to progress order #' + data + '</h5></div>'
+                                    + '<div class="modal-footer">'
+                                    + '<button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Cancel</button>'
+                                    + '<button type="button" class="btn btn-outline-primary progressOrder" data-dismiss="modal" value="' + data + '">Yes</button>'
+                                    + '</div></div></div></div>';
+                            }
+                            return response;
                         }
                     }
                 ],
                 orderable: false,
                 drawCallback: function () {
+
                     $('.cancelOrder').on('click', function () {
                         var target = $(this);
                         $.ajax({
                             type: "POST",
                             url: "{{ route('biker.orders.cancel') }}",
+                            data: {
+                                'id': target.val(),
+                                '_token': '{{ csrf_token() }}'
+                            },
+
+                            success: function (data) {
+                                if (data['status'] === true) {
+                                    toastr.success('{{ \App\Abstraction\Classes\Common\FeedbackMessages::TOASTR_SUCCESS }}');
+                                } else {
+                                    toastr.error('{{ \App\Abstraction\Classes\Common\FeedbackMessages::TOASTR_ERROR }}');
+                                }
+                                $('.modal-backdrop').remove();
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 700);
+
+                            }
+                        });
+                    });
+
+                    $('.progressOrder').on('click', function () {
+                        var target = $(this);
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ route('biker.orders.progress') }}",
                             data: {
                                 'id': target.val(),
                                 '_token': '{{ csrf_token() }}'
