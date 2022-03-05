@@ -18,6 +18,7 @@ The project is supposed to handle a mini parcels creation and delivering process
 - Order status
 
 ## Description and flow:
+
 a logged in [SENDER] can create as many parcels as he needs. he can then see their details (pick and delivery locations and current status) in the parcels index page.
 
 a logged in [BIKER] can serve the current parcels available for reserving. order can be progressed as follows:
@@ -27,3 +28,10 @@ a logged in [BIKER] can serve the current parcels available for reserving. order
 
 a biker can cancel an order reservation ( if it's allowed by the app), and can also progress with the order 
 delivery in a forced mechanism by the app.
+
+## Installation:
+- clone the project.
+- configure the DB in .env.
+- install dependencies via composer.
+- from the root directory, run:  php artisan migrate --seed.
+- 5 senders, 10 bikers are created in the process with dummy emails, all passwords are: "password".
