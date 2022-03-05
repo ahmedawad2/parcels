@@ -13,18 +13,6 @@ class OrderStatuses
     const STATUS_DELIVERED = 4;
     const STATUS_CANCELED = 5;
 
-    public static function getParcelCurrentStatus(Parcel $parcel): string
-    {
-        return $parcel->currentOrder
-            ? self::translate($parcel->currentOrder->currentStatus->status)
-            : self::translate(1);
-    }
-
-    public static function localizeOrderCurrentStatus(Order $order): string
-    {
-        return self::translate($order->currentStatus->status);
-    }
-
     private static function translate(int $status): string
     {
         switch ($status) {
@@ -39,6 +27,18 @@ class OrderStatuses
             default:
                 return 'CREATED';
         }
+    }
+
+    public static function localizeParcelCurrentStatus(Parcel $parcel): string
+    {
+        return $parcel->currentOrder
+            ? self::translate($parcel->currentOrder->currentStatus->status)
+            : self::translate(self::STATUS_CREATED);
+    }
+
+    public static function localizeOrderCurrentStatus(Order $order): string
+    {
+        return self::translate($order->currentStatus->status);
     }
 
     public static function nextProgressStatus(int $currentStatus): int

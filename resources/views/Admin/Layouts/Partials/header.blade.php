@@ -22,6 +22,7 @@
                         <a href="#" class="nav-link nav-menu-main menu-toggle hidden-xs">
                             <i class="ft-menu"></i></a></li>
                 </ul>
+                @if(\Illuminate\Support\Facades\Auth::check())
                 <ul class="nav navbar-nav float-xs-right">
                     <li class="dropdown dropdown-user nav-item">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link">
@@ -35,6 +36,7 @@
                         </div>
                     </li>
                 </ul>
+                @endif
             </div>
         </div>
     </div>

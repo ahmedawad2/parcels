@@ -21,6 +21,6 @@ class SenderMiddleware
         if (Auth::check() && User::isSender(Auth::user())) {
             return $next($request);
         }
-        return redirect()->route('404');
+        return response()->view('errors.404');
     }
 }

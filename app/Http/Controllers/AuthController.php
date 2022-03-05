@@ -10,7 +10,7 @@ class AuthController
     public function login()
     {
         if (Auth::check()) {
-            return redirect()->intended('dashboard');
+            return redirect()->intended('');
         }
         return view('Admin.Auth.login');
     }
@@ -33,7 +33,7 @@ class AuthController
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended('');
         }
 
         return back()->withErrors([

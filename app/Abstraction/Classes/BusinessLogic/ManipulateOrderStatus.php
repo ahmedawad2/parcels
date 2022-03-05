@@ -2,7 +2,6 @@
 
 namespace App\Abstraction\Classes\BusinessLogic;
 
-use App\Models\Order;
 use App\Models\OrderStatus;
 
 class ManipulateOrderStatus
@@ -18,7 +17,6 @@ class ManipulateOrderStatus
             OrderStatuses::STATUS_DELIVERED,
             OrderStatuses::STATUS_CANCELED
         ]);
-
     }
 
     public static function cancelOrder(int $orderId): bool

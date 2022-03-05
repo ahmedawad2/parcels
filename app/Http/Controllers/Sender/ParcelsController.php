@@ -80,7 +80,7 @@ class ParcelsController extends Controller
             "recordsTotal" => $recordsTotal,
             "recordsFiltered" => $recordsFiltered,
             "data" => $parcels->each(function ($parcel) {
-                $parcel->status = OrderStatuses::getParcelCurrentStatus($parcel);
+                $parcel->status = OrderStatuses::localizeParcelCurrentStatus($parcel);
             })
         ]);
     }
