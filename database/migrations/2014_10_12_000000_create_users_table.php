@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->unsignedTinyInteger('type');//1 for sender, 2 for biker
+            $table->unsignedTinyInteger('type')->index();//1 for sender, 2 for biker
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }

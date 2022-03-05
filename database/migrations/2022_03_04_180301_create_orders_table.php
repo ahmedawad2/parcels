@@ -14,11 +14,11 @@ class CreateOrdersTable extends Migration
         Schema::create($this->table, function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('parcel_id');
+            $table->unsignedBigInteger('parcel_id')->index();
             $table->foreign('parcel_id')->references('id')->on('parcels')
                 ->onDelete('cascade');
 
-            $table->unsignedBigInteger('biker_id');
+            $table->unsignedBigInteger('biker_id')->index();
             $table->foreign('biker_id')->references('id')->on('users')
                 ->onDelete('cascade');
 

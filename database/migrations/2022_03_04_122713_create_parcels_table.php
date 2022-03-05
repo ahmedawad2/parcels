@@ -13,7 +13,7 @@ class CreateParcelsTable extends Migration
         Schema::create($this->table, function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('sender_id');
+            $table->unsignedBigInteger('sender_id')->index();
             $table->foreign('sender_id')->references('id')->on('users')
                 ->onDelete('cascade');
 

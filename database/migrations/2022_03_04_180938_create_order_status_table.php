@@ -14,11 +14,11 @@ class CreateOrderStatusTable extends Migration
         Schema::create($this->table, function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('order_id');
+            $table->unsignedBigInteger('order_id')->index();
             $table->foreign('order_id')->references('id')->on('orders')
                 ->onDelete('cascade');
 
-            $table->unsignedTinyInteger('status');
+            $table->unsignedTinyInteger('status')->index();
 
             $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
